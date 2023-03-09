@@ -12,6 +12,7 @@ rotas.post('/login', ControleUsuario.AutenticarUsuarios );
 rotas.use(VerificarToken);
 
 rotas.post('/clientes', ControleCliente.cadastrarCliente);
+rotas.get('/listarclientes', ControleCliente.listarClientes);
 module.exports = {
      rotas 
 };

@@ -18,11 +18,23 @@ class ControleCliente {
 
                 return res.status(400).json({ mensagem: 'Porcentagem excedida' });
             }
+            
+            if(!cliente){
+                return res.status(400).json({ mensagem: 'Erro ao cadastrar cliente' });
+            }
         
             res.status(201).json({ cliente, totalParticipacao });
         } catch (error) {
-            console.error(error);
-            res.status(400).json({ mensagem: 'Erro ao cadastrar cliente' });
+            res.status(400).json({ mensagem: 'Erro interno no servidor' });
+        }
+    }
+    async  listarClientes(req, res) {
+        try {
+            const clientes = await ClienteModel.find();
+
+            res.status(201).json({ clientes });
+        } catch (error) {
+            res.status(400).json({ mensagem: 'Erro ao enconta cliente' });
         }
     }
 }
