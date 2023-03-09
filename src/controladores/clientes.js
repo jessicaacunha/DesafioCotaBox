@@ -54,6 +54,34 @@ class ControleCliente {
             res.status(400).json({ mensagem: 'Erro interno no servidor' });
         }
     }
+    async  editarCliente(req, res) {
+        try {
+            const id = req.params.id;
+
+            if (id.length !== 24) {
+              return res.status(400).json({ mensagem: 'ID inválido' });
+            }
+        
+            const cliente = await ClienteModel.findByIdAndUpdate( id, req.body, { new: true });
+            
+            if(!cliente){
+                return res.status(400).json({ mensagem: 'Cliente não encontrado' });
+            }
+            const result = await ClienteModel.aggregate([ { $group: { _id: null, totalParticipacao: { $sum: '$participacao' } } },]);
+
+            const totalParticipacao = result[0].totalParticipacao;
+            
+            if (totalParticipacao > 100) {
+                await ClienteModel.findByIdAndDelete(cliente._id);
+
+                return res.status(400).json({ mensagem: 'Porcentagem excedida' });
+            }
+
+            res.status(201).json({ cliente, totalParticipacao });
+        } catch (error) {
+            res.status(400).json({ mensagem: 'Erro interno no servidor' });
+        }
+    }
     async  deletarCliente(req, res) {
         try {
             const id = req.params.id;
