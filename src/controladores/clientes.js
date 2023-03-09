@@ -34,13 +34,13 @@ class ControleCliente {
 
             res.status(201).json({ clientes });
         } catch (error) {
-            res.status(400).json({ mensagem: 'Erro ao encontrar cliente' });
+            res.status(400).json({ mensagem: 'Erro interno no servidor' });
         }
     }
     async  listarCliente(req, res) {
         try {
             const id = req.params.id;
-            if (id.length < 24) {
+            if (id.length !== 24) {
               return res.status(400).json({ mensagem: 'ID inválido' });
             }
             const cliente = await ClienteModel.findById(id);
@@ -51,7 +51,24 @@ class ControleCliente {
 
             res.status(201).json({ cliente });
         } catch (error) {
-            res.status(400).json({ mensagem: 'Erro ao encontrar cliente' });
+            res.status(400).json({ mensagem: 'Erro interno no servidor' });
+        }
+    }
+    async  deletarCliente(req, res) {
+        try {
+            const id = req.params.id;
+            if (id.length !== 24) {
+              return res.status(400).json({ mensagem: 'ID inválido' });
+            }
+            const cliente = await ClienteModel.findByIdAndRemove(id);
+
+            if(!cliente){
+                return res.status(400).json({ mensagem: 'Cliente não encontrado' });
+            }
+
+            res.status(201).send();
+        } catch (error) {
+            res.status(400).json({ mensagem: 'Erro interno no servidor' });
         }
     }
 }

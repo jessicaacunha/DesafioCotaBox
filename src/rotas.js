@@ -14,7 +14,7 @@ rotas.use(VerificarToken);
 rotas.post('/clientes', ControleCliente.cadastrarCliente);
 rotas.get('/listarclientes', ControleCliente.listarClientes);
 rotas.get('/listarclientes/:id', ControleCliente.listarCliente);
-
+rotas.delete('/deletarclientes/:id', ControleCliente.deletarCliente);
 module.exports = {
      rotas 
 };
