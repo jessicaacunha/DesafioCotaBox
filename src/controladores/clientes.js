@@ -18,7 +18,7 @@ class ControleCliente {
 
                 return res.status(400).json({ mensagem: 'Porcentagem excedida' });
             }
-            
+
             if(!cliente){
                 return res.status(400).json({ mensagem: 'Erro ao cadastrar cliente' });
             }
@@ -34,11 +34,26 @@ class ControleCliente {
 
             res.status(201).json({ clientes });
         } catch (error) {
-            res.status(400).json({ mensagem: 'Erro ao enconta cliente' });
+            res.status(400).json({ mensagem: 'Erro ao encontrar cliente' });
+        }
+    }
+    async  listarCliente(req, res) {
+        try {
+            const id = req.params.id;
+            if (id.length < 24) {
+              return res.status(400).json({ mensagem: 'ID inválido' });
+            }
+            const cliente = await ClienteModel.findById(id);
+
+            if(!cliente){
+                return res.status(400).json({ mensagem: 'Cliente não encontrado' });
+            }
+
+            res.status(201).json({ cliente });
+        } catch (error) {
+            res.status(400).json({ mensagem: 'Erro ao encontrar cliente' });
         }
     }
 }
  
-
-
 module.exports = new ControleCliente();
