@@ -33,7 +33,7 @@ class ControleUsuario {
                 token: gerarToken({ id: usuario.id }),
             });
         } catch (error) {
-            res.status(400).json(error.message);
+            res.status(400).json({mensagem: "Erro interno no servidor"});
         }
     }
 
@@ -62,7 +62,7 @@ class ControleUsuario {
                 token: gerarToken({ id: usuario.id }),
             });
         } catch (error) {
-            res.status(400).json({mensagem: error.message});
+            res.status(400).json({mensagem: "Erro interno no servidor"});
         }
     }
 }
