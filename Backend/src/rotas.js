@@ -10,12 +10,12 @@ const { esquemaCadastroCliente, esquemaEditarCliente } = require('./esquema/clie
 
 const rotas = Router();
 
-rotas.post('/usuarios', validarUsuario(esquemaUsuarioCadastro), ControleUsuario.cadastrarUsuario );
+rotas.post('/cadastrousuario', validarUsuario(esquemaUsuarioCadastro), ControleUsuario.cadastrarUsuario );
 rotas.post('/login', validarLogin(esquemaLogin), ControleUsuario.AutenticarUsuarios );
 
 rotas.use(Autenticacao);
 
-rotas.post('/cadastrousuario', validarCliente (esquemaCadastroCliente), ControleCliente.cadastrarCliente);
+rotas.post('/clientes', validarCliente (esquemaCadastroCliente), ControleCliente.cadastrarCliente);
 rotas.get('/listarclientes', ControleCliente.listarClientes);
 rotas.get('/listarclientes/:id', ControleCliente.listarCliente);
 rotas.put('/editarclientes/:id', validarCliente(esquemaEditarCliente), ControleCliente.editarCliente);
