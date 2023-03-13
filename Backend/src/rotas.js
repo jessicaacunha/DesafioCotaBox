@@ -13,7 +13,7 @@ const rotas = Router();
 rotas.post('/cadastrousuario', validarUsuario(esquemaUsuarioCadastro), ControleUsuario.cadastrarUsuario );
 rotas.post('/login', validarLogin(esquemaLogin), ControleUsuario.AutenticarUsuarios );
 
-rotas.use(Autenticacao);
+// rotas.use(Autenticacao);
 
 rotas.post('/clientes', validarCliente (esquemaCadastroCliente), ControleCliente.cadastrarCliente);
 rotas.get('/listarclientes', ControleCliente.listarClientes);

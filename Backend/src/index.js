@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
 const mogoose = require("mongoose");
 
 const { rotas } = require("./rotas");
@@ -9,7 +10,7 @@ const PORT = process.env.PORT || 8000;
 const DB_USER = process.env.DB_USER;
 const DB_PASS = process.env.DB_PASS;
 
-
+app.use(cors());
 app.use(express.json());
 
 app.use(rotas);
