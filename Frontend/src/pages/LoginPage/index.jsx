@@ -1,24 +1,33 @@
 import React, { useState } from "react";
 
+import { AuthContext } from "../../contexts/auth";
+
+import { useNavigate } from "react-router-dom";
+
 import "./styles.css";
 
 const LoginPage = () => {
-
+    const navigate = useNavigate();
+    const { authenticated , login } = React.useContext(AuthContext);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleLogin = () => {
-        console.log("Email", email);
-        console.log("Password", password);
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        login(email, password);
+
+        navigate("/");
+
+
     };
 
     return (
         <div id="login">
             <div className="container-login">
                 <div className="wrap-login">
-                    <form className="login-form">                
+                    <form className="login-form" onSubmit={(e) => handleLogin(e)}>                
                         <h1 className="title">Login</h1>
-                    
+                    <p>Authenticated: { JSON.stringify(authenticated)}</p>
                         <div className="login-field" >
                             <input 
                                 className="input" 
@@ -28,9 +37,6 @@ const LoginPage = () => {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value) } />
                             <span className="focus-input"></span>
-                            {/* <span className="symbol-input">
-                                <i className="fa fa-envelope" img={email} aria-hidden="true"></i>
-                            </span>                         */}
                         </div>
 
                         <div className="login-field" >
@@ -41,19 +47,15 @@ const LoginPage = () => {
                             value={password}
                             onChange={(e) => setPassword(e.target.value) }/>
                             <span className="focus-input"></span>
-                            {/* <span className="symbol-input">
-                                <i className="fa fa-lock" img={password} aria-hidden="true"></i>
-                            </span> */}
                         </div>
 
                         <div className="actions">
-                            <button className="login-btn" type="submit" onClick={handleLogin}>Login</button>
+                            <button className="login-btn" type="submit" >Login</button>
                         </div>
                         
                         <div className="text">
                             <a className="text2" href="#">
                                 Create your Account
-                                {/* <i className="fa ml" aria-hidden="true"></i> */}
                             </a>
                         </div>
                     </form>

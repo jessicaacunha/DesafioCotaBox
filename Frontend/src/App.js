@@ -1,9 +1,10 @@
-import AppRoutes from "./AppRoutes";
+import React from "react";
 
+import AppRoutes from "./AppRoutes";
 
 function App() {
   return (
-    < AppRoutes  />
+      < AppRoutes  />
     );
 }
 

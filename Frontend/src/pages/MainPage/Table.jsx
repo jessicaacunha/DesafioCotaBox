@@ -7,7 +7,7 @@ import TableRow from '@mui/material/TableRow';
 import { Doughnut } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 
-const TableCustomers = ({ customers}) => {
+const TableCustomers = ({ customers, onEdit, onDelete}) => {
   const getChartData = (data) => {
     const labels = data.map((item) => `${item.nome} ${item.sobrenome}`);
     const values = data.map((item) => item.participacao);
@@ -48,6 +48,24 @@ const TableCustomers = ({ customers}) => {
                   <TableCell align="left">{customer.nome}</TableCell>
                   <TableCell align="left">{customer.sobrenome}</TableCell>
                   <TableCell align="center">{customer.participacao}</TableCell>
+                  <TableCell align="center">
+                    <button
+                      variant="contained"
+                      color="primary"
+                      onClick={() => onEdit(customer._id)}
+                    >
+                      Editar
+                    </button>
+                  </TableCell>
+                  <TableCell align="center">
+                    <button
+                      variant="contained"
+                      color="secondary"
+                      onClick={() => onDelete(customer._id)}
+                    >
+                      Deletar
+                    </button>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

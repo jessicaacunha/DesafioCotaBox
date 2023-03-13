@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+
 const RegisterPage = () => {
    
     const [name, setName] = useState("");

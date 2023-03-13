@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+
+import { AuthContext } from "../../contexts/auth";
+
 import Nav from "./Nav";
 import Table from "./Table";
 import Baseboard from "./Baseboard";
-import { getCustomers, createCustomers } from "../../services/api";
+import { getCustomers, createCustomers,  deleteCustomers } from "../../services/api";
 import "./styles.css";
 
 const MainPage = () => {
+  const { logout } = useContext(AuthContext);
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -27,7 +31,7 @@ const MainPage = () => {
     (async () => {
       await loadData();
     })();
-  }, []);
+  }, []);  
 
   const handleSend = async (nome, sobrenome, participacao, setFirstName, setLastName, setParticipation) => {
     const participationTotal = customers.reduce((acc, curr) => acc + curr.participacao, 0);
@@ -51,15 +55,16 @@ const MainPage = () => {
     setParticipation("");
     try {
      await createCustomers(nome, sobrenome, participacao);
-     loadData();
+     await loadData();
     } catch (error) {
       console.log(error);
       setError(true);
     } 
   };
 
-  const handleDelete = () => {
-    console.log("Delete", customers);
+  const handleDelete = async (customers) => {
+    await deleteCustomers(customers);
+    await loadData();
   };
 
   const handleEdit = () => {
@@ -67,7 +72,7 @@ const MainPage = () => {
   };
 
   const handleExit = () => {
-    console.log("Exit");
+    logout();
   };
 
     if (error) {
