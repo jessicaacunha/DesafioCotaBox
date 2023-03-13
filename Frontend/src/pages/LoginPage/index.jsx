@@ -19,7 +19,7 @@ const LoginPage = () => {
                     <form className="login-form">                
                         <h1 className="title">Login</h1>
                     
-                        <div className="field" >
+                        <div className="login-field" >
                             <input 
                                 className="input" 
                                 type="email" 
@@ -33,7 +33,7 @@ const LoginPage = () => {
                             </span>                         */}
                         </div>
 
-                        <div className="field" >
+                        <div className="login-field" >
                             <input 
                             className="input" 
                             type="password" 

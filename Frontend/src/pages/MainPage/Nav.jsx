@@ -41,7 +41,7 @@ const Nav = ({ onSend }) => {
                     /> 
                 <span className="focus-input"></span>     
             </div>
-            <button className="send-btn" type="submit" onClick={() => onSend(firstName, lastName, participation) }>Send</button>   
+            <button className="send-btn" type="submit" onClick={() => onSend(firstName, lastName, participation, setFirstName, setLastName, setParticipation) }>Send</button>   
     </div>
     )
 }

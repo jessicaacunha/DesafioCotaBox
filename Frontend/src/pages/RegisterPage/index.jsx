@@ -19,7 +19,7 @@ const RegisterPage = () => {
                     <form className="login-form">                
                         <h1 className="title">User registration </h1>
                     
-                        <div className="field" >
+                        <div className="login-field" >
                             <input 
                                 className="input" 
                                 type="text" 
@@ -33,7 +33,7 @@ const RegisterPage = () => {
                             </span>                         */}
                         </div>
 
-                        <div className="field" >
+                        <div className="login-field" >
                             <input 
                                 className="input" 
                                 type="email" 
@@ -47,7 +47,7 @@ const RegisterPage = () => {
                             </span>                         */}
                         </div>
 
-                        <div className="field" >
+                        <div className="login-field" >
                             <input 
                             className="input" 
                             type="password" 
