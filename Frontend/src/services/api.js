@@ -4,9 +4,9 @@ export const api = axios.create({
     baseURL: 'http://localhost:8000',
 });
 
-export const createUser = async (name, email, password) => {
+export const createUser = async (nome, email, senha) => {
     const url = `/cadastrousuario`;
-    return await api.post(url, {name, email, password});
+    return await api.post(url, {nome, email, senha});
 };
 
 export const loginUser = async (email, senha) => {
