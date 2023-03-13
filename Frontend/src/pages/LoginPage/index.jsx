@@ -8,7 +8,7 @@ import "./styles.css";
 
 const LoginPage = () => {
     const navigate = useNavigate();
-    const { authenticated , login } = React.useContext(AuthContext);
+    const { login } = React.useContext(AuthContext);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -16,9 +16,7 @@ const LoginPage = () => {
         e.preventDefault();
         login(email, password);
 
-        navigate("/");
-
-
+        navigate("/main");
     };
 
     return (
@@ -27,7 +25,6 @@ const LoginPage = () => {
                 <div className="wrap-login">
                     <form className="login-form" onSubmit={(e) => handleLogin(e)}>                
                         <h1 className="title">Login</h1>
-                    <p>Authenticated: { JSON.stringify(authenticated)}</p>
                         <div className="login-field" >
                             <input 
                                 className="input" 
@@ -54,7 +51,7 @@ const LoginPage = () => {
                         </div>
                         
                         <div className="text">
-                            <a className="text2" href="#">
+                            <a className="text2" href="http://localhost:3000/cadastrousuario">
                                 Create your Account
                             </a>
                         </div>

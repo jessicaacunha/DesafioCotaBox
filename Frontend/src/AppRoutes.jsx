@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 
 import {
     BrowserRouter as Router,
@@ -8,7 +8,7 @@ import {
     Outlet
 } from "react-router-dom";
 
-import { AuthProvider, AuthContext } from "../src/contexts/auth";
+import { AuthProvider } from "../src/contexts/auth";
 
 import LoginPage from "../src/pages/LoginPage";
 import MainPage from "../src/pages/MainPage";
@@ -27,10 +27,10 @@ const AppRoutes = () => {
         <Router>
             <AuthProvider>
                 <Routes>
-                    <Route path="/cadastrousuario" element={<RegisterPage />} />
-                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/register" element={<RegisterPage />} />
+                    <Route path="/" element={<LoginPage />} />
                     <Route element={<ProtectedRoutes redirectTo="/login" />}>
-                    <Route path="/" element={<MainPage />} />
+                    <Route path="/main" element={<MainPage />} />
           </Route>
                 </Routes>
             </AuthProvider>

@@ -2,14 +2,14 @@ import React, { useState, useEffect, createContext } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import { api, createUser, loginUser } from "../services/api";
+import { api, loginUser, createUser } from "../services/api";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
-    const [token, setToken] = useState(null);
+    const [token] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -22,6 +22,19 @@ export const AuthProvider = ({ children }) => {
         }
     }, []);
 
+    const register = async (name, email, password) => {
+
+        const response = await createUser(name, email, password);
+        localStorage.setItem("user", JSON.stringify(response.data.usuario));
+        localStorage.setItem("token", response.data.token);
+
+        api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
+        setUser(response.data.user);
+        setLoading(false);
+
+        navigate("/main");
+    };
+
     const login = async (email, password) => {
 
         const response = await loginUser(email, password);
@@ -32,7 +45,7 @@ export const AuthProvider = ({ children }) => {
         setUser(response.data.user);
         setLoading(false);
 
-        navigate("/");
+        navigate("/main");
     };
 
     const logout = () => {
@@ -43,7 +56,7 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
         setLoading(false);
 
-        navigate("/login");
+        navigate("/");
     };
 
     return (
@@ -52,6 +65,7 @@ export const AuthProvider = ({ children }) => {
             user,
             token,
             loading,
+            register,
             login,
             logout
         }}>

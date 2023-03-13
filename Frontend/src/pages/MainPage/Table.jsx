@@ -11,7 +11,7 @@ const TableCustomers = ({ customers, onEdit, onDelete}) => {
   const getChartData = (data) => {
     const labels = data.map((item) => `${item.nome} ${item.sobrenome}`);
     const values = data.map((item) => item.participacao);
-    const backgroundColor = ["#FF6384", "#36A2EB", "#FFCE56", "#FF6340", "#F58047", "#F5F"];
+    const backgroundColor = ["#FF6384", "#A020F0", "#FFCE56", "#F5F", "#08aeeb", "#00E5EE", "#00EE76" ];
 
     return {
       labels: labels,
@@ -44,21 +44,13 @@ const TableCustomers = ({ customers, onEdit, onDelete}) => {
                   key={index}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <TableCell align="right">{index}</TableCell>
+                  <TableCell align="right">{index+1}</TableCell>
                   <TableCell align="left">{customer.nome}</TableCell>
                   <TableCell align="left">{customer.sobrenome}</TableCell>
-                  <TableCell align="center">{customer.participacao}</TableCell>
+                  <TableCell align="center">{customer.participacao}%</TableCell>
                   <TableCell align="center">
                     <button
-                      variant="contained"
-                      color="primary"
-                      onClick={() => onEdit(customer._id)}
-                    >
-                      Editar
-                    </button>
-                  </TableCell>
-                  <TableCell align="center">
-                    <button
+                      className="btn btn-red"
                       variant="contained"
                       color="secondary"
                       onClick={() => onDelete(customer._id)}

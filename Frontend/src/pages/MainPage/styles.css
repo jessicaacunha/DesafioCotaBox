@@ -5,7 +5,7 @@
 }
 
 #main {
-    background: linear-gradient(-135deg, #11049f, #08aeeb);
+    background: linear-gradient(-135deg, #5043da, #08aeeb);
     width: 100%;
     min-height: 100vh;
     display: flex;
@@ -118,7 +118,6 @@ button:hover {
 
 .table-list{
     list-style: none;
-    background-color: aqua;
     width: 400px;
 }
 .table-item{
@@ -189,6 +188,20 @@ button:hover {
     -webkit-transition: all 0.4s;
     -o-transition: all 0.4s;
     -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+.btn-red {
+    font-family: Montserrat-Bold;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #fff;
+    text-transform: uppercase;
+    width: 75px;
+
+    border-radius: 5px;
+    background: #da1f1f;
+
     transition: all 0.4s;
 }
 

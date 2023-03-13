@@ -66,10 +66,7 @@ button:hover {
     align-items: center;
     padding: 15px;
     background: #9053c7;
-    background: -webkit-linear-gradient(-135deg, #11049f, #08aeeb);
-    background: -o-linear-gradient(-135deg, #11049f, #08aeeb);
-    background: -moz-linear-gradient(-135deg, #11049f, #08aeeb);
-    background: linear-gradient(-135deg, #11049f, #08aeeb);
+    background: linear-gradient(-135deg, #5043da, #08aeeb);
 }
 
 .wrap-login {
